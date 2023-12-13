@@ -55,7 +55,7 @@
                 </div>
                 <div class="py-4 px-4">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <h5 class="mb-0">Recent photos</h5><a href="#" class="btn btn-link text-muted">Show all</a>
+                        <!-- <h5 class="mb-0">Recent photos</h5><a href="#" class="btn btn-link text-muted">Show all</a> -->
                     </div>
                     <div class="row" id="productContainer">
                         <!-- Cards will be dynamically added here -->
@@ -170,14 +170,14 @@
             rowDiv.classList.add("row", "no-gutters");
 
             var imgColDiv = document.createElement("div");
-            imgColDiv.classList.add("col-md-6", "d-flex", "align-items-center");
+            imgColDiv.classList.add("col-6", "d-flex", "align-items-center");
 
             var img = document.createElement("img");
             img.src = product.imageUrl;
             img.classList.add("card-img");
 
             var contentColDiv = document.createElement("div");
-            contentColDiv.classList.add("col-md-6");
+            contentColDiv.classList.add("col-6");
 
             var cardBody = document.createElement("div");
             cardBody.classList.add("card-body");
