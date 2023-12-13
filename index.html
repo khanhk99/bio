@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khánh Ecom</title>
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="row py-5 px-4">
+        <div class="col-md-5 mx-auto"> <!-- Profile widget -->
+            <div class="bg-white shadow rounded overflow-hidden">
+                <div class="px-4 pt-0 pb-4 cover">
+                    <div class="media align-items-end profile-head">
+                        <div class="profile mr-3">
+                            <img src="images/avatar.jpg" alt="..." width="130" class="rounded mb-2 img-thumbnail">
+                            <!-- <a href="#" class="btn btn-outline-dark btn-sm btn-block">Edit profile</a> -->
+                        </div>
+                        <div class="media-body mb-5 text-white">
+                            <h4 class="mt-0 mb-0">Khánh Ecom</h4>
+                            <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-light p-4 d-flex justify-content-end text-center">
+                    <!-- <ul class="list-inline mb-0">
+                        <li class="list-inline-item">
+                            <h5 class="font-weight-bold mb-0 d-block"></h5><small class="text-muted"> <i
+                                    class="fas fa-image mr-1"></i>Photos</small>
+                        </li>
+                        <li class="list-inline-item">
+                            <h5 class="font-weight-bold mb-0 d-block"></h5><small class="text-muted"> <i
+                                    class="fas fa-user mr-1"></i>Followers</small>
+                        </li>
+                        <li class="list-inline-item">
+                            <h5 class="font-weight-bold mb-0 d-block"></h5><small class="text-muted"> <i
+                                    class="fas fa-user mr-1"></i>Following</small>
+                        </li>
+                    </ul> -->
+                </div>
+                <div class="px-4 py-3">
+                    <!-- <h5 class="mb-0">About</h5>
+                    <div class="p-4 rounded shadow-sm bg-light">
+                        <p class="font-italic mb-0">Web Developer</p>
+                        <p class="font-italic mb-0">Lives in New York</p>
+                        <p class="font-italic mb-0">Photographer</p>
+                    </div> -->
+                    <div class="form-group mt-3">
+                        <label for="searchInput">Tìm sản phẩm:</label>
+                        <input type="text" class="form-control" id="searchInput" oninput="searchProducts()">
+                    </div>
+                </div>
+                <div class="py-4 px-4">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h5 class="mb-0">Recent photos</h5><a href="#" class="btn btn-link text-muted">Show all</a>
+                    </div>
+                    <div class="row" id="productContainer">
+                        <!-- Cards will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    // Mảng chứa thông tin sản phẩm
+    var products = [
+        {
+            imageUrl: "images/bep-nong-mini-1-lan.jpg",
+            name: "BẾP NƯỚNG BBQ SỬ DỤNG 1 LẦN",
+            description: "shopee",
+            url: "https://shope.ee/5Km1OxWMmZ"
+        },
+        {
+            imageUrl: "images/lixi5.jpeg",
+            name: "Bao Lì Xì Đỏ",
+            description: "shopee",
+            url: "https://shope.ee/10d2FsMNr5"
+        },
+        {
+            imageUrl: "images/lixi3.jpeg",
+            name: "Bao Lì Xì Chibi",
+            description: "shopee",
+            url: "https://shope.ee/40Gdpe4MWh"
+        },
+        {
+            imageUrl: "images/lixi4.jpeg",
+            name: "Bao Lì Xì Chibi",
+            description: "shopee",
+            url: "https://shope.ee/5ASbDrpEtX"
+        },
+        // Thêm các sản phẩm khác nếu cần
+    ];
+
+    // Hàm thêm sản phẩm vào mảng và tạo card sản phẩm
+    function addProduct() {
+        // Lấy container chứa các card
+        var container = document.getElementById("productContainer");
+
+        // Duyệt qua mảng sản phẩm và tạo card cho mỗi sản phẩm
+        products.forEach(function (product) {
+            var cardDiv = document.createElement("div");
+            cardDiv.classList.add("card", "mx-auto", "mb-3", "mt-3");
+            cardDiv.style.width = "18rem";
+
+            var rowDiv = document.createElement("div");
+            rowDiv.classList.add("row", "no-gutters");
+
+            var imgColDiv = document.createElement("div");
+            imgColDiv.classList.add("col-6", "d-flex", "align-items-center");
+
+            var img = document.createElement("img");
+            img.src = product.imageUrl;
+            img.classList.add("card-img");
+
+            var contentColDiv = document.createElement("div");
+            contentColDiv.classList.add("col-6");
+
+            var cardBody = document.createElement("div");
+            cardBody.classList.add("card-body");
+
+            var title = document.createElement("h5");
+            title.classList.add("card-title");
+            title.textContent = product.name;
+
+            var description = document.createElement("p");
+            description.classList.add("card-text");
+            description.textContent = product.description;
+
+            imgColDiv.appendChild(img);
+
+            cardBody.appendChild(title);
+            cardBody.appendChild(description);
+
+            contentColDiv.appendChild(cardBody);
+
+            rowDiv.appendChild(imgColDiv);
+            rowDiv.appendChild(contentColDiv);
+
+            cardDiv.appendChild(rowDiv);
+
+            // Chuyển hướng đến URL sản phẩm khi click vào card
+            cardDiv.addEventListener("click", function () {
+                window.location.href = product.url;
+            });
+
+            container.appendChild(cardDiv);
+        });
+    }
+    function searchProducts() {
+        var searchInput = document.getElementById("searchInput").value.toLowerCase();
+        var container = document.getElementById("productContainer");
+        container.innerHTML = ''; // Clear existing products
+
+        var filteredProducts = products.filter(function (product) {
+            return product.name.toLowerCase().includes(searchInput) || product.description.toLowerCase().includes(searchInput);
+        });
+
+        filteredProducts.forEach(function (product) {
+            var cardDiv = document.createElement("div");
+            cardDiv.classList.add("card", "mx-auto", "mb-3", "mt-3");
+            cardDiv.style.width = "18rem";
+
+            var rowDiv = document.createElement("div");
+            rowDiv.classList.add("row", "no-gutters");
+
+            var imgColDiv = document.createElement("div");
+            imgColDiv.classList.add("col-md-6", "d-flex", "align-items-center");
+
+            var img = document.createElement("img");
+            img.src = product.imageUrl;
+            img.classList.add("card-img");
+
+            var contentColDiv = document.createElement("div");
+            contentColDiv.classList.add("col-md-6");
+
+            var cardBody = document.createElement("div");
+            cardBody.classList.add("card-body");
+
+            var title = document.createElement("h5");
+            title.classList.add("card-title");
+            title.textContent = product.name;
+
+            var description = document.createElement("p");
+            description.classList.add("card-text");
+            description.textContent = product.description;
+
+            imgColDiv.appendChild(img);
+
+            cardBody.appendChild(title);
+            cardBody.appendChild(description);
+
+            contentColDiv.appendChild(cardBody);
+
+            rowDiv.appendChild(imgColDiv);
+            rowDiv.appendChild(contentColDiv);
+
+            cardDiv.appendChild(rowDiv);
+
+            container.appendChild(cardDiv);
+        });
+    }
+    // Gọi hàm addProduct để tạo card ban đầu từ mảng sản phẩm
+    addProduct();
+</script>
+</script>
+
+</html>
